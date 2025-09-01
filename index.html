@@ -178,12 +178,12 @@ function startFetching(){
   let countdown=5;
   const pred=document.getElementById('prediction');
   pred.className="bigtext";
-  pred.textContent="" + countdown;
+  pred.textContent="Result" + countdown;
 
   let fetchInterval=setInterval(()=>{
     countdown--;
     if(countdown>0){
-      pred.textContent="" + countdown;
+      pred.textContent="Result" + countdown;
     }else{
       clearInterval(fetchInterval);
       showLiveResult();
