@@ -162,7 +162,7 @@ function update(){
 }
 setInterval(update,1000);
 
-// 🔥 AI Prediction based on history
+// 🔥 Drogon Prediction based on history
 function aiPredict(){
   if(hist.length < 5) return Math.random()<0.5?'BIG':'SMALL';
   let bigCount=hist.filter(x=>x==='BIG').length;
@@ -178,7 +178,7 @@ function startFetching(){
   let countdown=5;
   const pred=document.getElementById('prediction');
   pred.className="bigtext";
-  pred.textContent="Fetching " + countdown;
+  pred.textContent="" + countdown;
 
   let fetchInterval=setInterval(()=>{
     countdown--;
