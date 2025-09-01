@@ -183,7 +183,7 @@ function startFetching(){
   let fetchInterval=setInterval(()=>{
     countdown--;
     if(countdown>0){
-      pred.textContent="Fetching " + countdown;
+      pred.textContent="" + countdown;
     }else{
       clearInterval(fetchInterval);
       showLiveResult();
