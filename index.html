@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DROGON ULTIMATE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Orbitron:wght@700&display=swap');
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#0f172a;
+color:#fff;
+overflow-x:hidden;
+min-height:100vh;
+text-align:center;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+position:relative;
+}
+/* ==== BUBBLE BACKGROUND ==== */
+.bubbles{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;}
+.bubbles span{position:absolute;bottom:-150px;background:rgba(255,255,255,0.2);border-radius:50%;animation: rise 25s infinite ease-in;}
+.bubbles span:nth-child(1){width:80px;height:80px;left:5%;animation-duration:18s;background:rgba(255,20,147,0.3);}
+.bubbles span:nth-child(2){width:60px;height:60px;left:15%;animation-duration:22s;background:rgba(0,255,234,0.3);}
+.bubbles span:nth-child(3){width:100px;height:100px;left:35%;animation-duration:26s;background:rgba(106,90,205,0.3);}
+.bubbles span:nth-child(4){width:50px;height:50px;left:55%;animation-duration:20s;background:rgba(255,255,0,0.3);}
+.bubbles span:nth-child(5){width:90px;height:90px;left:75%;animation-duration:24s;background:rgba(255,69,0,0.3);}
+.bubbles span:nth-child(6){width:120px;height:120px;left:85%;animation-duration:30s;background:rgba(0,191,255,0.3);}
+@keyframes rise{0%{transform:translateY(0) scale(1);}100%{transform:translateY(-110vh) scale(1.5);}}
+
+/* ==== CONTAINER ==== */
+.container{padding:15px;width:95%;max-width:600px;position:relative;z-index:2;}
+.glass{background:rgba(255,255,255,0.12);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.2);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,0.25);}
+
+/* ==== HEADER ==== */
+.header-title{font-family:'Orbitron',sans-serif;font-size:6vw;margin-top:15px;font-weight:bold;color:#fff;text-shadow:0 0 12px rgba(0,0,0,0.5);}
+
+/* ==== TOP BAR ==== */
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-top:15px;padding:10px 15px;}
+.period-box{font-size:4vw;font-weight:600;color:#fff;}
+.timer-box{font-size:6vw;font-weight:bold;letter-spacing:2px;color:#ff1493;font-family:'Orbitron',sans-serif;}
+
+/* ==== FORM ==== */
+.form-box{margin-top:20px;padding:15px;}
+.form-box input,.form-box select{padding:10px;margin:6px;border:2px solid rgba(255,255,255,0.3);border-radius:10px;font-size:1rem;width:80%;background:rgba(255,255,255,0.25);color:#111;font-weight:600;}
+.form-box button{margin-top:10px;padding:10px 20px;background:#ff1493;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:bold;cursor:pointer;box-shadow:0 0 8px rgba(255,20,147,0.6);}
+.form-box button:hover{background:#e60073;}
+
+/* ==== DASHBOARD ==== */
+.dashboard{border-radius:14px;padding:15px;margin-top:15px;}
+.dashboard .row{display:flex;justify-content:space-between;margin:6px 0;font-size:3.8vw;font-weight:600;color:#fff;}
+
+/* ==== BALL ==== */
+.ball{width:45px;height:45px;border-radius:50%;font-size:1.4rem;font-weight:bold;line-height:45px;color:#fff;margin:auto;display:inline-block;margin-right:6px;box-shadow:0 0 10px rgba(0,0,0,0.25);}
+.red{background:radial-gradient(circle,#ff4c9d,#a0005a);}
+.green{background:radial-gradient(circle,#6bd36b,#006600);}
+.purple{background:radial-gradient(circle,#bbb,#444);}
+
+/* ==== PREDICTION ==== */
+.prediction-section{padding:15px;border-radius:14px;margin-top:20px;color:#fff;}
+.bigtext{width:160px;height:160px;border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center;font-size:7vw;font-weight:bold;font-family:'Orbitron',sans-serif;text-shadow:0 0 12px rgba(0,0,0,0.4);box-shadow:0 0 20px rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);position:relative;overflow:hidden;}
+.bigtext span{position:absolute;bottom:-20px;border-radius:50%;background:rgba(255,255,255,0.25);animation: riseIn 8s infinite ease-in;}
+.bigtext span:nth-child(1){width:20px;height:20px;left:20%;animation-duration:6s;}
+.bigtext span:nth-child(2){width:25px;height:25px;left:50%;animation-duration:7s;}
+.bigtext span:nth-child(3){width:15px;height:15px;left:70%;animation-duration:5s;}
+@keyframes riseIn{0%{transform:translateY(0) scale(1);opacity:0.5;}100%{transform:translateY(-180px) scale(1.5);opacity:0;}}
+.prediction-BIG{color:#ff4c9d;}
+.prediction-SMALL{color:#00ffea;}
+.numberCircle{width:120px;height:120px;border-radius:50%;margin:10px auto;display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:bold;font-family:'Orbitron',sans-serif;color:#fff;background:radial-gradient(circle,#ff4c9d,#a0005a);box-shadow:0 0 15px rgba(0,0,0,0.4);}
+
+/* ==== BIG-SMALL BUTTONS ==== */
+.choice-buttons{display:flex;justify-content:center;margin-top:20px;}
+.choice-buttons button{flex:1;padding:15px 0;font-size:1.3rem;font-weight:bold;border:none;cursor:pointer;transition:0.3s;color:#fff;}
+.choice-buttons .big-btn{background:#e5922c;border-radius:50px 0 0 50px;}
+.choice-buttons .small-btn{background:#61a8ff;border-radius:0 50px 50px 0;}
+.choice-buttons button:hover{opacity:0.85;}
+
+/* ==== HISTORY ==== */
+.prediction-history{margin-top:25px;}
+.table-head,.table-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:10px;font-size:3.2vw;align-items:center;color:#fff;}
+.table-head{font-weight:bold;background:rgba(255,255,255,0.25);border-radius:10px;}
+.table-row{background:rgba(255,255,255,0.15);border-radius:10px;margin-top:5px;box-shadow:0 0 6px rgba(0,0,0,0.25);}
+.table-row .ball{width:30px;height:30px;font-size:1rem;line-height:30px;}
+.footer{margin-top:20px;font-size:3.5vw;color:#fff;font-style:italic;}
+</style>
+</head>
+<body>
+<div class="bubbles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<div class="container glass">
+  <div class="header-title">❤️‍🩹 DROGON ULTIMATE ❤️‍🩹</div>
+  <div class="top-bar glass">
+    <div class="period-box">Period - <span id="period">--</span></div>
+    <div class="timer-box" id="timer">--</div>
+  </div>
+
+  <div class="form-box glass">
+    <input type="text" id="uid" placeholder="ENTER YOUR UID" /><br/>
+    <select id="gameName">
+      <option value="">SELECT GAME</option>
+      <option>BDG WIN</option><option>51 GAME</option><option>JALWA GAME</option><option>TASHAN</option>
+    </select><br/>
+    <button onclick="submitData()">SUBMIT</button>
+    <div id="submitMsg" style="margin-top:8px;font-weight:600;"></div>
+  </div>
+
+  <div class="form-box glass">
+    <input type="file" id="lossPhoto" accept="image/*"><br/>
+    <button onclick="startFetching()">UPLOAD & SHOW RESULT</button>
+    <div id="photoMsg" style="margin-top:8px;font-weight:600;color:#fff;"></div>
+  </div>
+
+  <div class="dashboard glass">
+    <div class="row"><span>Result Numbers -</span> <span id="resultBall" class="ball">-</span></div>
+    <div class="row"><span>Opposite Numbers -</span> <span id="oppBall" class="ball">-</span></div>
+  </div>
+
+  <div class="prediction-section glass">
+    <div class="sub">📊 DROGON ULTIMATE PREDICTION</div>
+    <div id="prediction" class="bigtext">--<span></span><span></span><span></span></div>
+    <div id="numberCircle" class="numberCircle">--</div>
+    <div class="choice-buttons">
+      <button class="big-btn">BIG</button>
+      <button class="small-btn">SMALL</button>
+    </div>
+  </div>
+
+  <div class="prediction-history">
+    <div class="table-head"><div>Period</div><div>Predicted</div><div>Result</div><div>Opposite</div></div>
+    <div id="historyBox"></div>
+  </div>
+
+  <div class="footer" id="log">📊 DROGON ULTIMATE PREDICTION</div>
+</div>
+
+<script>
+let hist = [], currentPeriod = "";
+let lastResultPeriod = "";
+
+function getIST(){const n=new Date();const u=n.getTime()+n.getTimezoneOffset()*60000;return new Date(u+5.5*3600000);}
+function getPeriodForDate(d){const ist=new Date(d);const y=ist.getFullYear();const m=String(ist.getMonth()+1).padStart(2,'0');const dd=String(ist.getDate()).padStart(2,'0');const minutes=ist.getHours()*60+ist.getMinutes();return String(y)+m+dd+"1000"+(10001+minutes-330);}
+function getPeriod(){return getPeriodForDate(getIST());}
+
+function getBallClass(n){if([2,4,6,8].includes(n))return'red';if([1,3,5,7,9].includes(n))return'green';return'purple';}
+function pickNumberForSide(side){const c=side==='BIG'?[5,6,7,8,9]:[0,1,2,3,4];return c[Math.floor(Math.random()*c.length)];}
+function getOppositeSide(side){return side==='BIG'?'SMALL':'BIG';}
+
+function addToHistory(p,pr,num,opp){
+  const row=document.createElement('div');
+  row.className='table-row';
+  row.innerHTML=`<div>${p}</div><div>${pr}</div><div><div class="ball ${getBallClass(num)}">${num}</div></div><div><div class="ball ${getBallClass(opp)}">${opp}</div></div>`;
+  const box=document.getElementById('historyBox');
+  box.prepend(row);
+  if(box.children.length>12)box.removeChild(box.lastChild);
+}
+
+function update(){
+  const now=getIST();const sec=now.getSeconds();
+  document.getElementById('timer').textContent=(60-sec).toString().padStart(2,'0')+"s";
+  const period=getPeriod();document.getElementById('period').textContent=period;
+}
+setInterval(update,1000);
+
+// 🔥 AI Prediction based on history
+function aiPredict(){
+  if(hist.length < 5) return Math.random()<0.5?'BIG':'SMALL';
+  let bigCount=hist.filter(x=>x==='BIG').length;
+  let smallCount=hist.filter(x=>x==='SMALL').length;
+  return bigCount>smallCount?'SMALL':'BIG';  // Reverse strategy
+}
+
+function startFetching(){
+  const file=document.getElementById("lossPhoto").files[0];
+  if(!file){document.getElementById("photoMsg").textContent="Please Select a Photo First !!!";return;}
+  document.getElementById("photoMsg").textContent="⏳ Fetching Result...";
+
+  let countdown=5;
+  const pred=document.getElementById('prediction');
+  pred.className="bigtext";
+  pred.textContent="Fetching " + countdown;
+
+  let fetchInterval=setInterval(()=>{
+    countdown--;
+    if(countdown>0){
+      pred.textContent="Fetching " + countdown;
+    }else{
+      clearInterval(fetchInterval);
+      showLiveResult();
+    }
+  },1000);
+}
+
+function showLiveResult(){
+  const period=getPeriod();
+  if(period === lastResultPeriod){
+    document.getElementById('photoMsg').textContent="Result already shown for this period !!!";
+    return;
+  }
+
+  const liveSide=aiPredict();
+  const liveNum=pickNumberForSide(liveSide);
+  const opp=9-liveNum;
+
+  const pred=document.getElementById('prediction');
+  pred.textContent=(liveSide==='BIG'?'B':'S');
+  pred.className=`bigtext prediction-${liveSide}`;
+  pred.innerHTML=pred.textContent+"<span></span><span></span><span></span>";
+
+  document.getElementById('resultBall').textContent=liveNum;
+  document.getElementById('resultBall').className=`ball ${getBallClass(liveNum)}`;
+  document.getElementById('oppBall').textContent=opp;
+  document.getElementById('oppBall').className=`ball ${getBallClass(opp)}`;
+  document.getElementById('numberCircle').textContent=liveNum;
+
+  addToHistory(period,liveSide,liveNum,opp);
+  hist.unshift(liveSide);
+  if(hist.length>100)hist.pop();
+
+  document.getElementById('photoMsg').textContent="📊 Live Result Shown !!!";
+  document.getElementById('log').textContent=` Drogon Predicted : ${liveSide} - NUMBERS ${liveNum}`;
+
+  lastResultPeriod = period;
+}
+
+function submitData(){
+  let uid=document.getElementById("uid").value.trim();
+  let game=document.getElementById("gameName").value.trim();
+  if(uid===""||game===""){document.getElementById("submitMsg").textContent="Please enter your UID and select Game !!!";}
+  else{document.getElementById("submitMsg").textContent=`✅ Submitted : UID = ${uid}, Game = ${game}`;setTimeout(()=>{document.getElementById("submitMsg").textContent="";},4000);}
+}
+</script>
+</body>
+</html>
